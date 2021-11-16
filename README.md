@@ -1,13 +1,13 @@
 Messy dotfiles? need a tool within features:
 
-- modular organize a single dotfile into multipart files  
+- modular organize a single dotfile into multipart files
 - easily platform migration by build parameters
 - centralized dotfiles generated
 - no conflict with your current dotfiles
 - no new syntax but only shell script
 - some nice dotfiles templates
 
-Try it out! It's my recent creative implementation.
+Try it out! It's my recent alpha creative implementation.
 
 ## Get Started
 
@@ -29,9 +29,9 @@ cd create-my-dotfiles
 | ---------------- | --------------------------- |
 | snippets/        | all your zshrc snippet      |
 | snippets/.local/ | localize code gitignore     |
-| ./build          | build to .serve             |
+| ./build.sh       | build to .serve             |
 | ./install.conf   | deploy config               |
-| ./install        | first run or reinstall only |
+| ./install.sh     | first run or reinstall only |
 
 ## Usage
 
