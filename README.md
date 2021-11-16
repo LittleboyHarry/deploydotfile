@@ -11,6 +11,8 @@ Try it out! It's my recent alpha creative implementation.
 
 ## Get Started
 
+require python3
+
 ```
 git clone https://github.com/LittleboyHarry/create-my-dotfiles
 cd create-my-dotfiles
@@ -29,17 +31,17 @@ cd create-my-dotfiles
 | ---------------- | --------------------------- |
 | snippets/        | all your zshrc snippet      |
 | snippets/.local/ | localize code gitignore     |
-| ./build.sh       | build to .serve             |
-| ./install.conf   | deploy config               |
-| ./install.sh     | first run or reinstall only |
+| ./build.py       | build to .serve             |
+| ./config.json    | deploy config               |
+| ./install.py     | first run or reinstall only |
 
 ## Usage
 
 for example, deploy zsh to new machine:
 
 ```shell
-# modify ./modules/zsh/install.conf or export env vars if required
-./modules/zsh/build && ./modules/zsh/install
+# modify ./modules/zsh/config.json if required
+./modules/zsh/build.py && ./modules/zsh/install.py
 
 # rebuild each time snippets change, no need install anymore
 ```

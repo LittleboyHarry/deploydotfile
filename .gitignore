@@ -1,3 +1,4 @@
-.serve
+__pycache__
 
-modules/*/snippets/.local
+/.serve
+/modules/*/snippets/.local
