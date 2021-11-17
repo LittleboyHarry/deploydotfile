@@ -1,15 +1,18 @@
-from os import system as shell
+from os import system as shell, mkdir
 from os.path import dirname, exists, isdir, expanduser
+from multiprocessing import Pool as ProcessPool
 import json
+import re
 
 from sys import path
 
-modir = dirname(__file__)
-path.append(dirname(dirname(modir)))
+module_dir = dirname(__file__)
+project_dir = dirname(dirname(module_dir))
+path.append(project_dir)
 
-from buildscript import openDotfile, snippetsCompile
+from buildscript import openDotfile
 
-with open(modir + "/metadata.json") as f:
+with open(module_dir + "/metadata.json") as f:
     metadata = json.load(f)
 
 with openDotfile(metadata["dotfile"]) as dotfile:
@@ -23,13 +26,34 @@ with openDotfile(metadata["dotfile"]) as dotfile:
         if fzfkb_exists:
             dotfile.content.replace(fzfkb_statement + "\n", "")
 
+
+def gitclone(item):
+    url = f"{url_prefix}{item}.git"
+    name = item.split("/")[-1]
+    return shell(
+        f'cd {plugs_dir}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone  --depth=1 "{url}"; fi'
+    )
+
+
 options = metadata.get("options")
 if options:
-    if options.get("zinitPlugs"):
-        if not isdir(expanduser("~/.zinit")):
-            shell(
-                'sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/master/doc/install.sh)"'
-            )
+    plugins = options.get("plugins")
+    if plugins:
+        global plugs_dir
+        plugs_dir = expanduser(plugins["directory"])
 
-        with open(f"build/{metadata['snippets']['buildTarget']}", "a") as target:
-            snippetsCompile(f"{modir}/zinit-plugs", target)
+        with open("config.json") as f:
+            use_mirror = json.load(f).get("china_env") or False
+
+        if not isdir(plugs_dir):
+            mkdir(plugs_dir)
+
+        global url_prefix
+        url_prefix = (
+            "https://gitclone.com/github.com/" if use_mirror else "https://github.com/"
+        )
+
+        pool = ProcessPool(3)
+        results = pool.map(gitclone, plugins.get("items") or [])
+        pool.close()
+        pool.join()

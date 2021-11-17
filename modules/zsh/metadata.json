@@ -9,6 +9,14 @@
     "pattern": "\\.zsh$"
   },
   "options": {
-    "zinitPlugs": true
+    "plugins": {
+      "directory": "~/.zplugins",
+      "items": [
+        "ohmyzsh/ohmyzsh",
+        "zsh-users/zsh-autosuggestions",
+        "zsh-users/zsh-syntax-highlighting",
+        "zsh-users/zsh-completions"
+      ]
+    }
   }
 }

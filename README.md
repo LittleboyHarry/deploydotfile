@@ -71,6 +71,8 @@ Q: Slow Make
 
 A: avoid huge binary file output.
 
+PS: 中国大陆环境修改 config.json
+
 ## ToDo
 
 - [ ] centralized tui manage tools, batch deploy
