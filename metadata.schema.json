@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "dotfile": {
+      "type": "string",
+      "description": "absolute target dotfile path"
+    },
+    "dotfileInject": {
+      "type": "object",
+      "description": "[autoscript] inject a load statement in target dotfile",
+      "properties": {
+        "template": {
+          "type": "string",
+          "description": "{} is placeholder"
+        },
+        "target": {
+          "type": "string",
+          "description": "build name as load target"
+        }
+      },
+      "required": ["template", "target"]
+    },
+    "snippets": {
+      "type": "object",
+      "description": "[autoscript] compile multiparts dotfile into ./build",
+      "properties": {
+        "buildTarget": {
+          "type": "string",
+          "description": "compile target file name"
+        },
+        "pattern": {
+          "type": "string",
+          "description": "regex filter"
+        }
+      },
+      "required": ["buildTarget"]
+    },
+    "options": {
+      "type": "object",
+      "description": "metadata options"
+    }
+  }
+}

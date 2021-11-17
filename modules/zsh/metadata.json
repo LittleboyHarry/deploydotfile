@@ -1,0 +1,14 @@
+{
+  "dotfile": "~/.zshrc",
+  "dotfileInject": {
+    "template": "source \"{}\"",
+    "target": "zshrc_postfix.zsh"
+  },
+  "snippets": {
+    "buildTarget": "zshrc_postfix.zsh",
+    "pattern": "\\.zsh$"
+  },
+  "options": {
+    "zinitPlugs": true
+  }
+}
