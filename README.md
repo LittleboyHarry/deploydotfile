@@ -11,7 +11,7 @@ Try it out! It's my recent alpha creative implementation.
 
 ## Get Started
 
-require python3
+require: `python3` `stow`
 
 ```
 git clone https://github.com/LittleboyHarry/create-my-dotfiles
@@ -23,6 +23,7 @@ cd create-my-dotfiles
 | File/Directory       | Description           |
 | -------------------- | --------------------- |
 | metadata.schema.json | JSON Schema           |
+| static/              | stow directly         |
 | modules/             | all modules           |
 | build/               | auto build result     |
 | buildscript/         | builtin script helper |
@@ -38,11 +39,13 @@ cd create-my-dotfiles
 
 ## Usage
 
-for example, deploy zsh to new machine:
-
 ```shell
+# for example, deploy zsh to new machine:
 # modify ./modules/zsh/metadata.json if required
 ./deploy.py modules/zsh/
+
+# stow
+stow -Rvt ~ static --ignore="^.gitkeep$"
 ```
 
 ## Built-in Autoscript Function
