@@ -42,10 +42,10 @@ cd create-my-dotfiles
 ```shell
 # for example, deploy zsh to new machine:
 # modify ./modules/zsh/metadata.json if required
-./deploy.py modules/zsh/
+./deploy modules/zsh/
 
-# stow
-stow -Rvt ~ static --ignore="^.gitkeep$"
+# static by stow
+./deploy-static
 ```
 
 ## Built-in Autoscript Function
