@@ -2,6 +2,7 @@
   "dotfile": "~/.zshrc",
   "dotfileInject": {
     "template": "source \"{}\"",
+    "comment":"# {}",
     "target": "zshrc_postfix.zsh"
   },
   "snippets": {

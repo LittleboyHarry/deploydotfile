@@ -1,4 +1,7 @@
+from genericpath import exists
+from os import mkdir
 from os.path import expanduser
+from posixpath import dirname
 
 
 class openDotfile:
@@ -7,10 +10,16 @@ class openDotfile:
         self.content = ""
 
     def __enter__(self):
-        with open(self._path) as f:
-            self.content = f.read()
+        try:
+            with open(self._path) as f:
+                self.content = f.read()
+        except FileNotFoundError:
+            self.content = ""
         return self
 
     def __exit__(self, type, value, traceback):
+        parent_dir = dirname(self._path)
+        if not exists(parent_dir):
+            mkdir(parent_dir)
         with open(self._path, "w") as f:
             f.write(self.content)

@@ -27,7 +27,7 @@ if snippets:
         pattern = None
 
     with open(f"build/{snippets['buildTarget']}", "w") as target:
-        snippetsCompile(snippets_dir, target, pattern)
+        snippetsCompile(snippets_dir, target, dotfileInject["comment"], pattern)
 
 autorun_path = f"{argv[1]}/autorun.py"
 if exists(autorun_path):
