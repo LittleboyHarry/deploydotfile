@@ -1,1 +1,3 @@
-export SUDO_PROMPT='[🔐] %p 密码: '
+setopt interactivecomments
+
+export SUDO_PROMPT='🔐 %p 密码: '

@@ -33,6 +33,8 @@ _load_plugins() {
 		_load_omz_plugin history
 		_load_omz_plugin dirhistory
 		_load_omz_plugin systemd
+		source "$omz/lib/clipboard.zsh"
+		_load_omz_plugin copybuffer
 	fi
 }
 
