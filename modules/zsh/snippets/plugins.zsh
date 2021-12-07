@@ -35,6 +35,7 @@ _load_plugins() {
 		_load_omz_plugin systemd
 		source "$omz/lib/clipboard.zsh"
 		_load_omz_plugin copybuffer
+		_load_omz_plugin copyfile
 	fi
 }
 
