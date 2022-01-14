@@ -29,13 +29,16 @@ _load_plugins() {
 		}
 
 		source "$omz/lib/key-bindings.zsh"
-		_load_omz_plugin sudo
-		_load_omz_plugin history
-		_load_omz_plugin dirhistory
-		_load_omz_plugin systemd
 		source "$omz/lib/clipboard.zsh"
-		_load_omz_plugin copybuffer
-		_load_omz_plugin copyfile
+		_load_omz_plugin {copybuffer,copyfile,copydir}
+
+		for name in \
+			sudo history dirhistory command-not-found zsh-interactive-cd alias-finder\
+			extract systemd gitignore dnf shell-proxy colored-man-pages
+		do _load_omz_plugin $name;	done
+
+		# others: aliases common-aliases git rsync vagrant
+		# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
 	fi
 }
 
