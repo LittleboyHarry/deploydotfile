@@ -33,7 +33,7 @@ _load_plugins() {
 		_load_omz_plugin {copybuffer,copyfile,copydir}
 
 		for name in \
-			sudo history dirhistory command-not-found zsh-interactive-cd alias-finder\
+			sudo history dirhistory command-not-found zsh-interactive-cd aliases alias-finder\
 			extract systemd gitignore dnf shell-proxy colored-man-pages
 		do _load_omz_plugin $name;	done
 
