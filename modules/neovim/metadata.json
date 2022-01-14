@@ -1,8 +1,8 @@
 {
   "dotfile": "~/.config/nvim/init.vim",
   "dotfileInject": {
-    "template": "source \"{}\"",
-    "comment":"\" {}",
+    "template": "source {}",
+    "comment": "\" {}",
     "target": "neovim_cfg.vim"
   },
   "snippets": {
