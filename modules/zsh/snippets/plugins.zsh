@@ -28,6 +28,7 @@ _load_plugins() {
 			source "$omz/plugins/$1/$1.plugin.zsh"
 		}
 
+		source "$omz/lib/completion.zsh"
 		source "$omz/lib/key-bindings.zsh"
 		source "$omz/lib/clipboard.zsh"
 		_load_omz_plugin {copybuffer,copyfile,copydir}
