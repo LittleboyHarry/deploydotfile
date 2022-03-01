@@ -48,14 +48,14 @@ cd create-my-dotfiles
 ./deploy-static
 ```
 
-## Built-in Autoscript Function
+## Built-in Auto Script Function
 
 - multipart snippets compile
 - scriptable dotfile `source` link to `./build`
 
 config all in your new module with `metadata.json` like example modules obeying the JSON-Schema, no more script need to write.
 
-anymore, you can write your own `autorun.py` in modules.
+anymore, you can write your own `autodeploy.py` in modules.
 
 ## FAQ
 
