@@ -1,13 +1,14 @@
 {
-  "dotfile": "~/.config/nvim/init.vim",
-  "dotfileInject": {
-    "template": "source {}",
-    "comment": "\" {}",
-    "target": "neovim_cfg.vim"
-  },
+  "$schema": "../../metadata.schema.json",
   "snippets": {
-    "buildTarget": "neovim_cfg.vim",
-    "pattern": "\\.vim$"
+    "pattern": "\\.vim$",
+    "generate_file": "neovim_cfg.vim",
+    "postfix_inject": {
+      "source": "~/.config/nvim/init.vim",
+      "comment": "\" {}",
+      "template": "source {}",
+      "target": "neovim_cfg.vim"
+    }
   },
   "options": {}
 }

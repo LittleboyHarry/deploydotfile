@@ -1,13 +1,14 @@
 {
-  "dotfile": "~/.zshrc",
-  "dotfileInject": {
-    "template": "source \"{}\"",
-    "comment": "# {}",
-    "target": "zshrc_postfix.zsh"
-  },
+  "$schema": "../../metadata.schema.json",
   "snippets": {
-    "buildTarget": "zshrc_postfix.zsh",
-    "pattern": "\\.zsh$"
+    "pattern": "\\.zsh$",
+    "generate_file": "zshrc_postfix.zsh",
+    "postfix_inject": {
+      "source": "~/.zshrc",
+      "comment": "# {}",
+      "template": "source \"{}\"",
+      "target": "zshrc_postfix.zsh"
+    }
   },
   "options": {
     "plugins": {

@@ -1,39 +1,46 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
-    "dotfile": {
-      "type": "string",
-      "description": "absolute target dotfile path"
-    },
-    "dotfileInject": {
-      "type": "object",
-      "description": "[autoscript] inject a load statement in target dotfile",
-      "properties": {
-        "template": {
-          "type": "string",
-          "description": "{} is placeholder"
-        },
-        "target": {
-          "type": "string",
-          "description": "build name as load target"
-        }
-      },
-      "required": ["template", "target"]
-    },
     "snippets": {
       "type": "object",
-      "description": "[autoscript] compile multiparts dotfile into ./build",
+      "description": "[auto-script] compile multipart dotfile into ./build",
       "properties": {
-        "buildTarget": {
+        "generate_file": {
           "type": "string",
           "description": "compile target file name"
         },
         "pattern": {
           "type": "string",
           "description": "regex filter"
+        },
+        "postfix_inject": {
+          "type": "object",
+          "description": "[auto-script] inject a load statement in target dotfile",
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "absolute source dotfile path"
+            },
+            "template": {
+              "type": "string",
+              "description": "{} is placeholder"
+            },
+            "target": {
+              "type": "string",
+              "description": "build name as load target"
+            }
+          },
+          "required": [
+            "source",
+            "template",
+            "target"
+          ]
         }
       },
-      "required": ["buildTarget"]
+      "required": [
+        "generate_file"
+      ]
     },
     "options": {
       "type": "object",

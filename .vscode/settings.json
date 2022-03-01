@@ -6,5 +6,6 @@
             ],
             "url": "./metadata.schema.json"
         }
-    ]
+    ],
+    "editor.formatOnSaveMode": "file"
 }

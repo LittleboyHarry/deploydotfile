@@ -5,11 +5,11 @@ from os import system as shell, makedirs
 from os.path import dirname, exists, isdir, expanduser
 from sys import path, argv
 
+from scripts import open_dotfile
+
 module_dir = dirname(__file__)
 project_dir = dirname(dirname(module_dir))
 path.append(project_dir)
-
-from scripts import open_dotfile
 
 with open(module_dir + "/metadata.json") as f:
     metadata = json.load(f)
