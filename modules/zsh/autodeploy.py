@@ -2,7 +2,7 @@ import json
 from functools import partial
 from multiprocessing import Pool as ProcessPool
 from os import system as shell, makedirs
-from os.path import dirname, exists, isdir, expanduser
+from os.path import dirname, exists, expanduser
 from sys import path, argv
 
 from scripts import open_as_str
@@ -26,11 +26,11 @@ with open_as_str(metadata["snippets"]["postfix_inject"]["target"]) as dotfile:
             dotfile.string.replace(fzfkb_statement + "\n", "")
 
 
-def gitclone(use_mirror, items):
+def gitclone(plugins_directory, items, **at_mainland):
     name, urls = items
-    url = urls['url' if not use_mirror else 'url_git']
+    url = urls['url' if not at_mainland else 'mainland_url']
     return shell(
-        f'cd {plugs_dir}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone --depth=1 "{url}" "{name}"; fi')
+        f'cd {plugins_directory}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone --depth=1 "{url}" "{name}"; fi')
 
 
 def main():
@@ -38,17 +38,14 @@ def main():
     if options:
         plugins = options.get("plugins")
         if plugins:
-            global plugs_dir
-            plugs_dir = expanduser(plugins["directory"])
-
             arg = argv[2] if len(argv) > 2 else None
-            use_mirror = arg == 'atmainland'
 
-            if not isdir(plugs_dir):
-                makedirs(plugs_dir)
+            plugins_directory = expanduser(plugins["directory"])
+            makedirs(plugins_directory, exist_ok=True)
 
             pool = ProcessPool(3)
-            pool.map(partial(gitclone, use_mirror), plugins.get("items").items() or [])
+            pool.map(partial(gitclone, plugins_directory, at_mainland=(arg == 'atmainland')),
+                     plugins.get("items").items() or [])
             pool.close()
             pool.join()
 
