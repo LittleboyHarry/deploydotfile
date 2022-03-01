@@ -1,5 +1,5 @@
 _load_plugins() {
-	local zplugins_dir="$HOME/.zplugins"
+	local zplugins_dir="$HOME/.create-my-dotfiles/zsh-plugins"
 
 	[ ! -d "$zplugins_dir" ] && return
 

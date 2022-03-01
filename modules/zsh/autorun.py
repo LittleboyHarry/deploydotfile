@@ -1,10 +1,9 @@
-from os import system as shell, mkdir
-from os.path import dirname, exists, isdir, expanduser
-from multiprocessing import Pool as ProcessPool
 import json
-import re
-
-from sys import path
+from functools import partial
+from multiprocessing import Pool as ProcessPool
+from os import system as shell, makedirs
+from os.path import dirname, exists, isdir, expanduser
+from sys import path, argv
 
 module_dir = dirname(__file__)
 project_dir = dirname(dirname(module_dir))
@@ -27,33 +26,31 @@ with openDotfile(metadata["dotfile"]) as dotfile:
             dotfile.content.replace(fzfkb_statement + "\n", "")
 
 
-def gitclone(item):
-    url = f"{url_prefix}{item}.git"
-    name = item.split("/")[-1]
+def gitclone(use_mirror, items):
+    name, urls = items
+    url = urls['url' if not use_mirror else 'url_git']
     return shell(
-        f'cd {plugs_dir}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone  --depth=1 "{url}"; fi'
-    )
+        f'cd {plugs_dir}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone --depth=1 "{url}" "{name}"; fi')
 
 
-options = metadata.get("options")
-if options:
-    plugins = options.get("plugins")
-    if plugins:
-        global plugs_dir
-        plugs_dir = expanduser(plugins["directory"])
+def main():
+    options = metadata.get("options")
+    if options:
+        plugins = options.get("plugins")
+        if plugins:
+            global plugs_dir
+            plugs_dir = expanduser(plugins["directory"])
 
-        with open("config.json") as f:
-            use_mirror = json.load(f).get("china_env") or False
+            arg = argv[2] if len(argv) > 2 else None
+            use_mirror = arg == 'atmainland'
 
-        if not isdir(plugs_dir):
-            mkdir(plugs_dir)
+            if not isdir(plugs_dir):
+                makedirs(plugs_dir)
 
-        global url_prefix
-        url_prefix = (
-            "https://gitclone.com/github.com/" if use_mirror else "https://github.com/"
-        )
+            pool = ProcessPool(3)
+            pool.map(partial(gitclone, use_mirror), plugins.get("items").items() or [])
+            pool.close()
+            pool.join()
 
-        pool = ProcessPool(3)
-        results = pool.map(gitclone, plugins.get("items") or [])
-        pool.close()
-        pool.join()
+
+main()

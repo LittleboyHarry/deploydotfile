@@ -2,7 +2,7 @@
   "dotfile": "~/.zshrc",
   "dotfileInject": {
     "template": "source \"{}\"",
-    "comment":"# {}",
+    "comment": "# {}",
     "target": "zshrc_postfix.zsh"
   },
   "snippets": {
@@ -11,13 +11,25 @@
   },
   "options": {
     "plugins": {
-      "directory": "~/.zplugins",
-      "items": [
-        "ohmyzsh/ohmyzsh",
-        "zsh-users/zsh-autosuggestions",
-        "zsh-users/zsh-syntax-highlighting",
-        "zsh-users/zsh-completions"
-      ]
+      "directory": "~/.create-my-dotfiles/zsh-plugins",
+      "items": {
+        "ohmyzsh": {
+          "url": "https://github.com/ohmyzsh/ohmyzsh",
+          "mainland_url": "https://gitee.com/mirrors/ohmyzsh"
+        },
+        "zsh-autosuggestions": {
+          "url": "https://github.com/zsh-users/zsh-autosuggestions",
+          "mainland_url": "https://gitclone.com/github.com/zsh-users/zsh-autosuggestions"
+        }
+      },
+      "zsh-syntax-highlighting": {
+        "url": "https://github.com/zsh-users/zsh-syntax-highlighting",
+        "mainland_url": "https://gitclone.com/github.com/zsh-users/zsh-syntax-highlighting"
+      },
+      "zsh-completions": {
+        "url": "https://github.com/zsh-users/zsh-completions",
+        "mainland_url": "https://gitclone.com/github.com/zsh-users/zsh-completions"
+      }
     }
   }
 }
