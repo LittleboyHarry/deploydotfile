@@ -1,7 +1,7 @@
 import json
 from os.path import relpath
 
-from scripts import openDotfile
+from scripts import open_dotfile
 
 
 class ModuleHelper:
@@ -11,10 +11,10 @@ class ModuleHelper:
             self.data = json.load(f)
 
     def dotfile_inject(self, statement):
-        with openDotfile(self.data["dotfile"]) as dotfile:
+        with open_dotfile(self.data["dotfile"]) as dotfile:
             if not statement in dotfile.content:
                 dotfile.content += f"\n{statement}\n"
 
     def dotfile_remove(self, statement):
-        with openDotfile(self.data["dotfile"]) as dotfile:
+        with open_dotfile(self.data["dotfile"]) as dotfile:
             dotfile.content.replace(f"{statement}\n", "")

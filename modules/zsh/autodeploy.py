@@ -9,12 +9,12 @@ module_dir = dirname(__file__)
 project_dir = dirname(dirname(module_dir))
 path.append(project_dir)
 
-from scripts import openDotfile
+from scripts import open_dotfile
 
 with open(module_dir + "/metadata.json") as f:
     metadata = json.load(f)
 
-with openDotfile(metadata["dotfile"]) as dotfile:
+with open_dotfile(metadata["dotfile"]) as dotfile:
     fzfkb_path = "/usr/share/fzf/shell/key-bindings.zsh"
     fzfkb_statement = f'source "{fzfkb_path}"'
     fzfkb_exists = fzfkb_statement in dotfile.content

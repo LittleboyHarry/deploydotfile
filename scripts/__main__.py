@@ -1,9 +1,10 @@
-from sys import argv
-from os.path import abspath, exists
-from ._ModuleHelper import ModuleHelper
-from . import snippetsCompile
-from runpy import run_path
 import re
+from os.path import abspath, exists
+from runpy import run_path
+from sys import argv
+
+from . import compile_snippets
+from .ModuleHelper import ModuleHelper
 
 helper = ModuleHelper(argv[1])
 
@@ -27,7 +28,7 @@ if snippets:
         pattern = None
 
     with open(f"build/{snippets['buildTarget']}", "w") as target:
-        snippetsCompile(snippets_dir, target, dotfileInject["comment"], pattern)
+        compile_snippets(snippets_dir, target, dotfileInject["comment"], pattern)
 
 autodeploy_path = f"{argv[1]}/autodeploy.py"
 if exists(autodeploy_path):

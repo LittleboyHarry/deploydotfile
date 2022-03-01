@@ -1,2 +1,2 @@
-from .openDotfile import openDotfile
-from .snippetsCompile import snippetsCompile
+from .Dotfile import open_dotfile
+from .compile_snippets import compile_snippets
