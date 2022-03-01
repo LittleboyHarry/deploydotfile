@@ -1,1 +1,1 @@
-from .Dotfile import open_dotfile
+from .FileAsStr import open_as_str

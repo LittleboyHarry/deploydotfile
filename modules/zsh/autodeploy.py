@@ -5,7 +5,7 @@ from os import system as shell, makedirs
 from os.path import dirname, exists, isdir, expanduser
 from sys import path, argv
 
-from scripts import open_dotfile
+from scripts import open_as_str
 
 module_dir = dirname(__file__)
 project_dir = dirname(dirname(module_dir))
@@ -14,16 +14,16 @@ path.append(project_dir)
 with open(module_dir + "/metadata.json") as f:
     metadata = json.load(f)
 
-with open_dotfile(metadata["dotfile"]) as dotfile:
+with open_as_str(metadata["snippets"]["postfix_inject"]["target"]) as dotfile:
     fzfkb_path = "/usr/share/fzf/shell/key-bindings.zsh"
     fzfkb_statement = f'source "{fzfkb_path}"'
-    fzfkb_exists = fzfkb_statement in dotfile.content
+    fzfkb_exists = fzfkb_statement in dotfile.string
     if exists(fzfkb_path):
         if not fzfkb_exists:
-            dotfile.content += f"\n{fzfkb_statement}\n"
+            dotfile.string += f"\n{fzfkb_statement}\n"
     else:
         if fzfkb_exists:
-            dotfile.content.replace(fzfkb_statement + "\n", "")
+            dotfile.string.replace(fzfkb_statement + "\n", "")
 
 
 def gitclone(use_mirror, items):

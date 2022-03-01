@@ -1,11 +1,11 @@
 import json
 import re
-from os import walk
-from os.path import abspath, exists, relpath, join
+from os import walk, makedirs
+from os.path import abspath, exists, relpath, join, expanduser
 from runpy import run_path
 from sys import argv
 
-from . import open_dotfile
+from . import open_as_str
 
 module_path = relpath(argv[1])
 with open(module_path + "/metadata.json") as f:
@@ -22,12 +22,13 @@ if snippets_config:
 
     inject_config = snippets_config.get("postfix_inject")
     if inject_config:
-        statement = inject_config["template"].format(
-            abspath("build/" + inject_config["target"])
-        )
+        with open("config.json") as f:
+            generated_path = expanduser(json.load(f)["generated_path"])
+        makedirs(generated_path, exist_ok=True)
+        compiled_filepath = f"{generated_path}/{snippets_config['generate_file']}"
 
         # compile snippets
-        with open(f"build/{snippets_config['generate_file']}", "w") as target:
+        with open(compiled_filepath, "w") as target:
             comment = inject_config["comment"]
             for root, _, files in walk(snippets_directory):
                 for file in files:
@@ -42,9 +43,10 @@ if snippets_config:
                     target.write("\n\n")
 
         # inject postfix into dotfile
-        with open_dotfile(inject_config["source"]) as dotfile:
-            if not (statement in dotfile.content):
-                dotfile.content += f"\n{statement}\n"
+        with open_as_str(inject_config["target"]) as dotfile:
+            statement = inject_config["template"].format(abspath(compiled_filepath))
+            if not (statement in dotfile.string):
+                dotfile.string += f"\n{statement}\n"
 
 autodeploy_path = f"{argv[1]}/autodeploy.py"
 if exists(autodeploy_path):

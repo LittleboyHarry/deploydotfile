@@ -19,20 +19,15 @@
           "description": "[auto-script] inject a load statement in target dotfile",
           "properties": {
             "source": {
-              "type": "string",
-              "description": "absolute source dotfile path"
+              "type": "target",
+              "description": "absolute target dotfile path"
             },
             "template": {
               "type": "string",
               "description": "{} is placeholder"
-            },
-            "target": {
-              "type": "string",
-              "description": "build name as load target"
             }
           },
           "required": [
-            "source",
             "template",
             "target"
           ]

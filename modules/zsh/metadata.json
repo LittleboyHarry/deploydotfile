@@ -4,10 +4,9 @@
     "pattern": "\\.zsh$",
     "generate_file": "zshrc_postfix.zsh",
     "postfix_inject": {
-      "source": "~/.zshrc",
+      "target": "~/.zshrc",
       "comment": "# {}",
-      "template": "source \"{}\"",
-      "target": "zshrc_postfix.zsh"
+      "template": "source \"{}\""
     }
   },
   "options": {

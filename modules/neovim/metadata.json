@@ -4,10 +4,9 @@
     "pattern": "\\.vim$",
     "generate_file": "neovim_cfg.vim",
     "postfix_inject": {
-      "source": "~/.config/nvim/init.vim",
+      "target": "~/.config/nvim/init.vim",
       "comment": "\" {}",
-      "template": "source {}",
-      "target": "neovim_cfg.vim"
+      "template": "source {}"
     }
   },
   "options": {}
