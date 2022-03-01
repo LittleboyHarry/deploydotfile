@@ -9,7 +9,7 @@ module_dir = dirname(__file__)
 project_dir = dirname(dirname(module_dir))
 path.append(project_dir)
 
-from buildscript import openDotfile
+from scripts import openDotfile
 
 with open(module_dir + "/metadata.json") as f:
     metadata = json.load(f)

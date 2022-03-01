@@ -1,6 +1,7 @@
-from buildscript import openDotfile
-from os.path import relpath
 import json
+from os.path import relpath
+
+from scripts import openDotfile
 
 
 class ModuleHelper:

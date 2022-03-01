@@ -26,7 +26,7 @@ cd create-my-dotfiles
 | static/              | stow directly         |
 | modules/             | all modules           |
 | build/               | auto build result     |
-| buildscript/         | builtin script helper |
+| scripts/             | builtin script helper |
 | ./deploy             | install script        |
 
 ### Each Module
