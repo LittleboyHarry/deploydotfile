@@ -1,9 +1,11 @@
 __load_my_plugins() {
 	local omz_plugins=(
-		sudo history dirhistory zsh-interactive-cd aliases alias-finder z
+		copybuffer copyfile copypath sudo history dirhistory zsh-interactive-cd aliases alias-finder z
 		git rsync dnf extract systemd
 		command-not-found gitignore shell-proxy
 	)
+	local omz_hint=(adb fd pip yarn docker rust)
+
 	local zplugins_dir="$HOME/.create-my-dotfiles/zsh-plugins"
 	local autosuggestions="$zplugins_dir/zsh-autosuggestions"
 	local syntax_highlighting="$zplugins_dir/zsh-syntax-highlighting"
@@ -38,9 +40,9 @@ __load_my_plugins() {
 		source "$omz/lib/completion.zsh"
 		source "$omz/lib/key-bindings.zsh"
 		source "$omz/lib/clipboard.zsh"
-		loadomzplug {copybuffer,copyfile,copydir}
 
 		for plugin in $omz_plugins; do loadomzplug $plugin; done
+		for hint_plug in $omz_hint; do fpath=("$__load_omzplug__dir/plugins/$hint_plug" $fpath); done
 
 		# others: aliases common-aliases git rsync vagrant
 		# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
