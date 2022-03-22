@@ -49,7 +49,9 @@ if snippets_config:
 
         # inject postfix into dotfile
 
-        target = inject_config["target_win" if platform == "win32" else "target"]
+        target = inject_config["target"]
+        if platform == "win32" and inject_config.get("target_win") != None:
+            target = inject_config["target_win"]
 
         with open_as_str(target) as dotfile:
             statement = inject_config["template"].format(abspath(compiled_filepath))

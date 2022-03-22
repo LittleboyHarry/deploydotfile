@@ -1,9 +1,10 @@
 __load_my_plugins() {
 	local omz_plugins=(
-		copybuffer copyfile copypath sudo history dirhistory zsh-interactive-cd aliases alias-finder z
+		copybuffer copyfile copypath sudo history dirhistory aliases alias-finder z
 		git rsync dnf extract systemd
 		command-not-found gitignore shell-proxy
 	)
+	# other: zsh-interactive-cd
 	local omz_hint=(adb fd pip yarn docker rust)
 
 	local zplugins_dir="$HOME/.create-my-dotfiles/zsh-plugins"
