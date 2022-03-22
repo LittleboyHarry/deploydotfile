@@ -45,7 +45,7 @@ cd create-my-dotfiles
 ./deploy modules/zsh/
 
 # static by stow
-./deploy-static
+./deploy-stow
 ```
 
 ## Built-in Auto Script Function
