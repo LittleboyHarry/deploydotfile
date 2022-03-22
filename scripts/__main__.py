@@ -3,13 +3,16 @@ import re
 from os import walk, makedirs
 from os.path import abspath, exists, relpath, join, expanduser
 from runpy import run_path
-from sys import argv
+from sys import argv, platform
 
 from . import open_as_str
 
 module_path = relpath(argv[1])
 with open(module_path + "/metadata.json") as f:
     module_metadata = json.load(f)
+
+if module_metadata.get("windows_support") == False and platform == "win32":
+    raise RuntimeError("zsh only suppport in UNIX or MSYS environment")
 
 options = module_metadata.get("options") or dict()
 
@@ -33,7 +36,9 @@ if snippets_config:
             for root, _, files in walk(snippets_directory):
                 for file in files:
                     rel_path = join(root, file)
-                    if pattern and not pattern.search(rel_path[len(snippets_directory) + 1:]):
+                    if pattern and not pattern.search(
+                        rel_path[len(snippets_directory) + 1 :]
+                    ):
                         continue
 
                     full_path = abspath(rel_path)
@@ -43,7 +48,10 @@ if snippets_config:
                     target.write("\n\n")
 
         # inject postfix into dotfile
-        with open_as_str(inject_config["target"]) as dotfile:
+
+        target = inject_config["target_win" if platform == "win32" else "target"]
+
+        with open_as_str(target) as dotfile:
             statement = inject_config["template"].format(abspath(compiled_filepath))
             if not (statement in dotfile.string):
                 dotfile.string += f"\n{statement}\n"

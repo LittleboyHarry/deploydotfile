@@ -1,5 +1,6 @@
 {
   "$schema": "../../metadata.schema.json",
+  "windows_support": false,
   "snippets": {
     "pattern": "\\.zsh$",
     "generate_file": "zshrc_postfix.zsh",

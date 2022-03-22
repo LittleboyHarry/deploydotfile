@@ -28,9 +28,10 @@ with open_as_str(metadata["snippets"]["postfix_inject"]["target"]) as dotfile:
 
 def gitclone(plugins_directory, items, **at_mainland):
     name, urls = items
-    url = urls['url' if not at_mainland else 'mainland_url']
+    url = urls["url" if not at_mainland else "mainland_url"]
     return shell(
-        f'cd {plugins_directory}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone --depth=1 "{url}" "{name}"; fi')
+        f'cd {plugins_directory}; if [ -d "{name}" ]; then cd "{name}"; git pull -f; else git clone --depth=1 "{url}" "{name}"; fi'
+    )
 
 
 def main():
@@ -44,8 +45,10 @@ def main():
             makedirs(plugins_directory, exist_ok=True)
 
             pool = ProcessPool(3)
-            pool.map(partial(gitclone, plugins_directory, at_mainland=(arg == 'atmainland')),
-                     plugins.get("items").items() or [])
+            pool.map(
+                partial(gitclone, plugins_directory, at_mainland=(arg == "atmainland")),
+                plugins.get("items").items() or [],
+            )
             pool.close()
             pool.join()
 

@@ -2,6 +2,7 @@ from genericpath import exists
 from os import mkdir
 from os.path import expanduser
 from posixpath import dirname
+import ntpath
 
 
 class FileAsStr:
@@ -18,7 +19,7 @@ class FileAsStr:
         return self
 
     def __exit__(self, _, value, traceback):
-        parent_dir = dirname(self._path)
+        parent_dir = dirname(self._path) or ntpath.dirname(self._path)
         if not exists(parent_dir):
             mkdir(parent_dir)
         with open(self._path, "w") as f:

@@ -18,28 +18,34 @@
           "type": "object",
           "description": "[auto-script] inject a load statement in target dotfile",
           "properties": {
-            "source": {
-              "type": "target",
-              "description": "absolute target dotfile path"
+            "target": {
+              "type": "string",
+              "description": "target dotfile path"
+            },
+            "target_win": {
+              "type": "string",
+              "description": "windows target dotfile path"
+            },
+            "comment": {
+              "type": "string",
+              "description": "{} is placeholder"
             },
             "template": {
               "type": "string",
               "description": "{} is placeholder"
             }
           },
-          "required": [
-            "template",
-            "target"
-          ]
+          "required": ["template", "target"]
         }
       },
-      "required": [
-        "generate_file"
-      ]
+      "required": ["generate_file"]
     },
     "options": {
       "type": "object",
       "description": "metadata options"
+    },
+    "windows_support": {
+      "type": "boolean"
     }
   }
 }

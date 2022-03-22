@@ -5,6 +5,7 @@
     "generate_file": "neovim_cfg.vim",
     "postfix_inject": {
       "target": "~/.config/nvim/init.vim",
+      "target_win": "~\\AppData\\Local\\nvim\\init.vim",
       "comment": "\" {}",
       "template": "source {}"
     }
