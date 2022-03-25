@@ -7,7 +7,7 @@ __load_my_plugins() {
 	# other: zsh-interactive-cd
 	local omz_hint=(adb fd pip yarn docker rust)
 
-	local zplugins_dir="$HOME/.create-my-dotfiles/zsh-plugins"
+	local zplugins_dir="$HOME/.deploy-my-dotfiles/zsh-plugins"
 	local autosuggestions="$zplugins_dir/zsh-autosuggestions"
 	local syntax_highlighting="$zplugins_dir/zsh-syntax-highlighting"
 	omz="$zplugins_dir/ohmyzsh"
