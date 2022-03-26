@@ -1,7 +1,7 @@
 __load_my_plugins() {
 	local omz_plugins=(
 		copybuffer copyfile copypath sudo history dirhistory aliases alias-finder z
-		git rsync dnf extract systemd
+		git rsync dnf extract systemd nvm
 		command-not-found gitignore shell-proxy
 	)
 	# other: zsh-interactive-cd
