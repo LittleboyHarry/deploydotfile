@@ -1,9 +1,28 @@
 __load_my_plugins() {
-	local omz_plugins=(
-		copybuffer copyfile copypath sudo history dirhistory aliases alias-finder z
-		git rsync dnf extract systemd nvm yarn
-		command-not-found gitignore shell-proxy
+	local omz_plugins=()
+
+    lsb_release -si | grep -qi "^Arch" && omz_plugins+=(archlinux)
+	(( $+commands[dpkg] )) && omz_plugins+=(debian)
+	(( $+commands[dnf] )) && omz_plugins+=(dnf)
+
+	(( $+commands[yarn] )) && omz_plugins+=(yarn)
+	omz_plugins+=(nvm)
+
+	(( $+commands[rsync] )) && omz_plugins+=(rsync)
+	(( $+commands[git] )) && omz_plugins+=(git gitignore)
+	(( $+commands[systemctl] )) && omz_plugins+=(systemd)
+
+	if (( $+commands[xclip] || $+commands[wl-copy] )); then
+		omz_plugins+=(copybuffer copyfile copypath)
+	fi
+
+	omz_plugins+=(
+		extract z dirhistory shell-proxy
+		command-not-found
+		aliases alias-finder
+		sudo history
 	)
+
 	# other: zsh-interactive-cd
 	local omz_hint=(adb fd pip yarn docker rust)
 
@@ -45,9 +64,11 @@ __load_my_plugins() {
 		for plugin in $omz_plugins; do loadomzplug $plugin; done
 		for hint_plug in $omz_hint; do fpath=("$__load_omzplug__dir/plugins/$hint_plug" $fpath); done
 
-		# others: aliases common-aliases git rsync vagrant
+		# others: common-aliases git rsync vagrant
 		# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
 	fi
 }
 
 __load_my_plugins
+
+unalias acs 2> /dev/null
