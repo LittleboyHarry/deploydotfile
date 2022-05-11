@@ -64,6 +64,9 @@ __load_my_plugins() {
 		for plugin in $omz_plugins; do loadomzplug $plugin; done
 		for hint_plug in $omz_hint; do fpath=("$__load_omzplug__dir/plugins/$hint_plug" $fpath); done
 
+		autoload -U compinit
+		compinit
+
 		# others: common-aliases git rsync vagrant
 		# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
 	fi
