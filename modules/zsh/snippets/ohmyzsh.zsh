@@ -44,6 +44,10 @@ __dmd_load_omz() {
     autoload -U compinit
     compinit
 
+    source "$omzdir/lib/git.zsh"
+    source "$omzdir/lib/prompt_info_functions.zsh"
+    source "$omzdir/lib/theme-and-appearance.zsh"
+
     # others: common-aliases vagrant
     # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/
 
