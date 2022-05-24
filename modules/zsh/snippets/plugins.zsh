@@ -1,5 +1,5 @@
-__dmd_load_zplug() {
-	local zplugdir="$HOME/.deploy-my-dotfiles/zsh-plugins"
+__dpdf_load_zplug() {
+	local zplugdir="$HOME/.deploydotfile/zsh-plugins"
 	[[ ! -d "$zplugdir" ]] && return
 
 	local autosuggestions="$zplugdir/zsh-autosuggestions"
@@ -22,4 +22,4 @@ __dmd_load_zplug() {
 	fi
 }
 
-__dmd_load_zplug
+__dpdf_load_zplug

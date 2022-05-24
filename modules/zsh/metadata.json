@@ -12,7 +12,7 @@
   },
   "options": {
     "plugins": {
-      "directory": "~/.deploy-my-dotfiles/zsh-plugins",
+      "directory": "~/.deploydotfile/zsh-plugins",
       "items": {
         "ohmyzsh": {
           "url": "https://github.com/ohmyzsh/ohmyzsh",

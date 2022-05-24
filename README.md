@@ -14,8 +14,8 @@ Try it out! It's my recent alpha creative implementation.
 require: `python3` `stow`
 
 ```
-git clone https://github.com/LittleboyHarry/deploy-my-dotfiles
-cd deploy-my-dotfiles
+git clone https://github.com/LittleboyHarry/deploydotfile
+cd deploydotfile
 ```
 
 ## Structure
