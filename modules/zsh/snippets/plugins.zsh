@@ -1,4 +1,4 @@
-__dpdf_load_zplug() {
+__ddf_load_zplug() {
 	local zplugdir="$HOME/.deploydotfile/zsh-plugins"
 	[[ ! -d "$zplugdir" ]] && return
 
@@ -22,4 +22,4 @@ __dpdf_load_zplug() {
 	fi
 }
 
-__dpdf_load_zplug
+__ddf_load_zplug

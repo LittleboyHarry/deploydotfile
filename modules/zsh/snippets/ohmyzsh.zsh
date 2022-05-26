@@ -1,4 +1,4 @@
-__dpdf_load_omz() {
+__ddf_load_omz() {
     local omzdir="$HOME/.deploydotfile/zsh-plugins/ohmyzsh"
     [[ ! -d "$omzdir" ]] && return
 
@@ -53,4 +53,4 @@ __dpdf_load_omz() {
 
 }
 
-__dpdf_load_omz
+__ddf_load_omz
